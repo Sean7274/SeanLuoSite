@@ -4,122 +4,617 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sean Luo | Accounting & Data Science</title>
+  <meta name="description" content="Sean Luo — Accounting & Data Science student at UIUC Gies College of Business. Audit, venture capital, and a life full of hiking, cats, and coin collecting.">
   <style>
+    :root {
+      --navy: #0f172a;
+      --blue: #2563eb;
+      --sky: #38bdf8;
+      --ink: #1f2937;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #1f2937;
-      background: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--bg);
     }
+
+    img { max-width: 100%; display: block; }
+
+    a { color: var(--blue); }
 
     nav {
-      padding: 18px 8%;
-      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 14px 8%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      row-gap: 8px;
     }
 
-    nav a {
-      color: #2563eb;
+    nav .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    nav .brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    nav .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+    }
+
+    nav .links a {
+      color: var(--ink);
       text-decoration: none;
-      margin-left: 16px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      white-space: nowrap;
     }
 
-    header {
-      padding: 90px 8%;
-      background: #0f172a;
+    nav .links a:hover { color: var(--blue); }
+
+    header.hero {
+      padding: 80px 8% 70px;
+      background: linear-gradient(135deg, var(--navy) 0%, #1e293b 100%);
       color: white;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
     }
 
-    header h1 {
+    .hero-text { flex: 1 1 420px; }
+
+    .hero-text .eyebrow {
+      color: var(--sky);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .hero-text h1 {
       font-size: 3rem;
-      margin-bottom: 8px;
+      margin: 10px 0 8px;
+    }
+
+    .hero-text p.tagline {
+      font-size: 1.15rem;
+      color: #cbd5e1;
+      max-width: 540px;
+    }
+
+    .hero-buttons {
+      margin-top: 26px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
     .button {
       display: inline-block;
-      margin-top: 18px;
-      padding: 12px 18px;
-      background: #38bdf8;
-      color: #0f172a;
+      padding: 12px 20px;
+      background: var(--sky);
+      color: var(--navy);
       text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: white;
+      border: 1.5px solid #475569;
+    }
+
+    .hero-photo {
+      flex: 0 0 auto;
+    }
+
+    .hero-photo img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--sky);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
     }
 
     section {
-      max-width: 900px;
+      max-width: 980px;
       margin: auto;
-      padding: 55px 8%;
+      padding: 64px 8%;
+    }
+
+    section.alt { background: white; max-width: 100%; }
+    section.alt > .inner { max-width: 980px; margin: auto; }
+
+    h2 {
+      font-size: 1.9rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 640px;
     }
 
     .card {
-      background: white;
-      padding: 24px;
+      background: var(--card);
+      padding: 24px 26px;
       margin: 18px 0;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+      border: 1px solid var(--border);
     }
 
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    .card-head img.logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f1f5f9;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .card-head .title h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--navy);
+    }
+
+    .card-head .title .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .card ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+
+    .card li { margin-bottom: 6px; }
+
+    .about-grid {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .about-grid .text { flex: 1 1 400px; }
+
+    .edu-box {
+      flex: 1 1 280px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .edu-box .edu-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .edu-box .edu-head img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .edu-box .gpa {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+
+    .edu-box ul { padding-left: 18px; margin: 10px 0 0; font-size: 0.92rem; color: var(--ink); }
+
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      background: #eff6ff;
+      color: var(--blue);
+      border: 1px solid #dbeafe;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .pill.alt {
+      background: #f0fdf4;
+      color: #16a34a;
+      border-color: #dcfce7;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .gallery figure {
+      margin: 0;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,.1);
+      aspect-ratio: 4 / 3;
+    }
+
+    .gallery figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .gallery figure:hover img { transform: scale(1.06); }
+
+    .gallery figcaption {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 14px 14px 10px;
+      background: linear-gradient(to top, rgba(15,23,42,0.88), transparent);
+      color: white;
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .gallery figure.wide { grid-column: span 2; }
+
     footer {
-      padding: 30px 8%;
+      padding: 40px 8%;
       text-align: center;
-      background: #e2e8f0;
+      background: var(--navy);
+      color: #cbd5e1;
+    }
+
+    footer a { color: var(--sky); }
+
+    footer .socials { margin: 14px 0; }
+    footer .socials a { margin: 0 10px; text-decoration: none; font-weight: 600; }
+
+    @media (max-width: 720px) {
+      header.hero { flex-direction: column-reverse; text-align: center; padding: 56px 6% 48px; }
+      .hero-text p.tagline { margin: 0 auto; }
+      .hero-buttons { justify-content: center; }
+      .about-grid { flex-direction: column; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery figure.wide { grid-column: span 2; }
+      h1 { font-size: 2.2rem !important; }
     }
   </style>
 </head>
 <body>
   <nav>
-    <strong>Sean Luo</strong>
-    <div>
+    <div class="brand">
+      <img src="ProfilePic.jpeg" alt="Sean Luo">
+      Sean Luo
+    </div>
+    <div class="links">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#life">Beyond Work</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
 
-  <header>
-    <h1>Sean Luo</h1>
-    <p>Accounting + Data Science student at the University of Illinois Urbana-Champaign.</p>
-    <a class="button" href="https://www.linkedin.com/in/minze-luo-b7b743325" target="_blank">Connect on LinkedIn</a>
+  <header class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">Champaign, IL</div>
+      <h1>Hi, I'm Sean.</h1>
+      <p class="tagline">
+        Accounting + Data Science student at UIUC's Gies College of Business, minoring in Computer Science.
+        I like turning messy numbers into clear stories — in audit fieldwork, in market research, and in code.
+        When I'm not doing that, I'm probably on a trail, playing with my cat, or hunting down an old coin.
+      </p>
+      <div class="hero-buttons">
+        <a class="button" href="https://www.linkedin.com/in/minze-luo-b7b743325" target="_blank">Connect on LinkedIn</a>
+        <a class="button secondary" href="mailto:minzel2@illinois.edu">Say Hello</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="ProfilePic.jpeg" alt="Sean Luo headshot">
+    </div>
   </header>
 
   <section id="about">
     <h2>About Me</h2>
-    <p>
-      I am a UIUC student studying Accounting and Data Science, with a minor in Computer Science.
-      I am interested in audit, finance, data visualization, and using technology to solve business problems.
-    </p>
+    <p class="section-sub">The short version: a curious accountant who codes, and a lifelong student of whatever's interesting.</p>
+    <div class="about-grid">
+      <div class="text">
+        <p>
+          I'm working toward a Bachelor of Science in Accounting &amp; Data Science with a minor in Computer Science
+          at the University of Illinois Urbana-Champaign, and I'm CPA-eligible on graduation. I'm drawn to audit,
+          finance, and data visualization — basically anywhere numbers meet real decisions.
+        </p>
+        <p>
+          Outside the classroom, I've counted inventory on a Chinese dairy farm, researched U.S. AI companies for
+          a venture capital fund, and tutored 35 students through AP exams. I care about doing careful, honest work —
+          and about staying a genuinely fun person to work with while doing it.
+        </p>
+        <div class="pill-group">
+          <span class="pill">Professional Chinese &amp; English</span>
+          <span class="pill">Fluent Japanese</span>
+          <span class="pill alt">3.98 GPA</span>
+        </div>
+      </div>
+      <div class="edu-box">
+        <div class="edu-head">
+          <img src="UIUC Gies LOGO.png" alt="Gies College of Business logo">
+          <div>
+            <strong>Gies College of Business</strong><br>
+            <span class="meta" style="color:var(--muted); font-size:0.88rem;">University of Illinois Urbana-Champaign</span>
+          </div>
+        </div>
+        <p style="margin:4px 0 0; font-size:0.92rem;">B.S. Accounting + Data Science, Minor in CS</p>
+        <p style="margin:2px 0 0; font-size:0.88rem; color:var(--muted);">Expected Graduation: May 2028 · CPA Eligible</p>
+        <span class="gpa">GPA 3.98 / 4.00</span>
+        <ul>
+          <li>Spring 2025 Dean's List</li>
+          <li>Illinois CPA Society Member</li>
+          <li>Gies CEO Program &amp; Gies Ambassador</li>
+          <li>HIMCM First Prize · AP Scholar</li>
+          <li>US Expedition, EY 2026</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <section id="experience">
-    <h2>Selected Experience</h2>
+  <section class="alt" id="experience">
+    <div class="inner">
+      <h2>Experience</h2>
+      <p class="section-sub">A running list of where I've put the debits and credits (and the code) to work.</p>
 
-    <div class="card">
-      <h3>Summer Audit Intern — ShineWing CPAs</h3>
-      <p>Performed audit testing, reconciled bank statements, supported inventory counts, and helped identify financial-reporting risks.</p>
-    </div>
+      <div class="card">
+        <div class="card-head">
+          <img class="logo" src="SWLOGO.png" alt="ShineWing CPAs logo">
+          <div class="title">
+            <h3>Summer Audit Intern — ShineWing Certified Public Accountants LLP</h3>
+            <div class="meta">Chengdu · Tibet · Daqing, China — June 2025 to July 2025</div>
+          </div>
+        </div>
+        <ul>
+          <li>Performed cutoff testing on sales/admin expenses and third-party payments; reconciled three years of bank statements and traced large fund flows to identify restricted cash, prepping cash work papers with senior auditors.</li>
+          <li>Coordinated across 34 departments to surface 30+ impairment risks on aging deposits and litigation write-offs, and validated payroll compliance across rosters, tax, and benefits.</li>
+          <li>Led inventory counts across ranch and factory assets with securities-firm brokers — livestock, feed, equipment, cold storage — and managed confirmation processes that flagged 110+ defective confirmations.</li>
+        </ul>
+      </div>
 
-    <div class="card">
-      <h3>Venture Capital Intern — Hai Kun Capital</h3>
-      <p>Researched global industries and U.S. AI companies, producing weekly reports on market trends and investment opportunities.</p>
-    </div>
+      <div class="card">
+        <div class="card-head">
+          <img class="logo" src="HaiKunLOGO.png" alt="Hai Kun Capital logo">
+          <div class="title">
+            <h3>Venture Capital Intern — Hai Kun Capital</h3>
+            <div class="meta">Remote — April 2025 to November 2025</div>
+          </div>
+        </div>
+        <ul>
+          <li>Collaborated with a nine-person team analyzing 13 trending global industries, delivering weekly reports to managers.</li>
+          <li>Owned U.S. AI company analysis — four hours daily reading news, tracking market trends, and writing investment reports.</li>
+        </ul>
+      </div>
 
-    <div class="card">
-      <h3>Accounting Department Group Leader — Gies Capital Association</h3>
-      <p>Led a five-person group completing accounting and financial-analysis projects on companies including NVIDIA, Intel, TSMC, and SMIC.</p>
+      <div class="card">
+        <div class="card-head">
+          <img class="logo" src="HPLOGO.png" alt="Hungry Panda logo">
+          <div class="title">
+            <h3>Marketing Intern — Hungry Panda Food Delivery</h3>
+            <div class="meta">Champaign, IL — February 2025 to September 2025</div>
+          </div>
+        </div>
+        <ul>
+          <li>Promoted the app around campus town, driving 100+ downloads/hour and 50+ orders/hour at peak, while sharpening persuasion and communication skills.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="title">
+            <h3>Student Desk Clerk &amp; Dining Worker — University Housing</h3>
+            <div class="meta">Champaign, IL — February 2025 to Present</div>
+          </div>
+        </div>
+        <ul>
+          <li>Support 80+ residents daily across keys, lost &amp; found, and maintenance requests; helped 20+ colleagues plan move-in logistics.</li>
+          <li>Rotated through table service, dish room, stocking, and allergy/pizza kitchens — once handled 600+ table cleanings in a single two-hour shift.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="title">
+            <h3>Teaching Assistant — AP Courses TA Program</h3>
+            <div class="meta">Chengdu, China — September 2021 to June 2024</div>
+          </div>
+        </div>
+        <ul>
+          <li>Tutored 35 students daily for a year — over 80% scored a 5/5 on their AP exams — while working with teachers to refine exam strategy.</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: minzel2@illinois.edu</p>
-    <p><a href="https://www.linkedin.com/in/minze-luo-b7b743325" target="_blank">LinkedIn</a></p>
+  <section id="leadership">
+    <h2>Leadership &amp; Activities</h2>
+    <p class="section-sub">Where I spend my time outside of internships — clubs, committees, and one very important fraternity.</p>
+
+    <div class="card">
+      <div class="card-head">
+        <img class="logo" src="AKLLOGO.png" alt="AKL fraternity logo">
+        <div class="title">
+          <h3>Founding Member — AKL Fraternity</h3>
+          <div class="meta">Champaign, IL</div>
+        </div>
+      </div>
+      <p>One of the founding members building this chapter from the ground up alongside a group of guys I now consider family.</p>
+      <img src="AKL.jpeg" alt="AKL founding members group photo" style="border-radius:10px; margin-top:12px; max-height:340px; width:100%; object-fit:cover;">
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0; color:var(--navy);">Accounting Club — Platinum Member</h3>
+      <div class="meta" style="color:var(--muted); font-size:0.9rem; margin-bottom:8px;">Champaign, IL — August 2025 to Present</div>
+      <ul>
+        <li>Reached Platinum status through 16+ professional, social, and philanthropy events per semester.</li>
+        <li>Secured 2nd place in a cross-club case competition leading financial analysis for a five-person team.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0; color:var(--navy);">Chinese Student and Scholar Association (CSSA) — Manager, Accounting (A/R)</h3>
+      <div class="meta" style="color:var(--muted); font-size:0.9rem; margin-bottom:8px;">Champaign, IL — September 2024 to Present</div>
+      <ul>
+        <li>Prepared and sent 80+ invoices to sponsors and led year-end statement preparation.</li>
+        <li>Audited storage 20+ times a year, reporting inventory changes to the executive board.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0; color:var(--navy);">Gies Capital Association (GCA) — Group Leader, Accounting Department</h3>
+      <div class="meta" style="color:var(--muted); font-size:0.9rem; margin-bottom:8px;">Champaign, IL — October 2024 to Present</div>
+      <ul>
+        <li>Four hours weekly in lecture on practical tax and audit topics with fellow department members.</li>
+        <li>Led a five-person group through accounting and financial analysis projects on NVIDIA, Intel, TSMC, and SMIC — presented monthly.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="alt" id="skills">
+    <div class="inner">
+      <h2>Skills &amp; Interests</h2>
+      <p class="section-sub">The toolkit, and the stuff I do purely because I enjoy it.</p>
+      <div class="about-grid">
+        <div class="text">
+          <h3 style="color:var(--navy); font-size:1.05rem;">Skills</h3>
+          <div class="pill-group">
+            <span class="pill">Excel (Audit &amp; Finance)</span>
+            <span class="pill">Python</span>
+            <span class="pill">Java</span>
+            <span class="pill">MATLAB</span>
+            <span class="pill">Microsoft 365</span>
+            <span class="pill">Bookkeeping Platforms</span>
+            <span class="pill">Data Visualization</span>
+            <span class="pill">Machine Learning</span>
+          </div>
+        </div>
+        <div class="text">
+          <h3 style="color:var(--navy); font-size:1.05rem;">Interests</h3>
+          <div class="pill-group">
+            <span class="pill alt">Hiking</span>
+            <span class="pill alt">Coin Collecting</span>
+            <span class="pill alt">Muay Thai</span>
+            <span class="pill alt">Piano</span>
+            <span class="pill alt">Cooking</span>
+            <span class="pill alt">Movies &amp; Video Games</span>
+            <span class="pill alt">Investing &amp; Crypto</span>
+            <span class="pill alt">My Cat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="life">
+    <h2>Beyond the Desk</h2>
+    <p class="section-sub">Spreadsheets during the day, trails, travel, and one very spoiled cat the rest of the time.</p>
+    <div class="gallery">
+      <figure class="wide">
+        <img src="Hiking.jpeg" alt="Sean hiking a trail">
+        <figcaption>Chasing whatever trail looks interesting</figcaption>
+      </figure>
+      <figure>
+        <img src="BB1.jpeg" alt="Sean's cat">
+        <figcaption>My cat, my favorite coworker</figcaption>
+      </figure>
+      <figure>
+        <img src="BB2.jpeg" alt="Sean's cat">
+        <figcaption>Same cat, still unimpressed</figcaption>
+      </figure>
+      <figure>
+        <img src="Cali.jpeg" alt="Sean traveling in California">
+        <figcaption>California trip</figcaption>
+      </figure>
+      <figure class="wide">
+        <img src="BDLG.jpeg" alt="Sean traveling">
+        <figcaption>On the road, always taking notes</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="alt" id="contact">
+    <div class="inner">
+      <h2>Let's Talk</h2>
+      <p class="section-sub">Open to conversations about audit, venture capital, data, or a good hiking trail recommendation.</p>
+      <div class="card" style="display:flex; gap:24px; flex-wrap:wrap; align-items:center;">
+        <div style="flex:1 1 240px;">
+          <p style="margin:4px 0;"><strong>Email:</strong> <a href="mailto:minzel2@illinois.edu">minzel2@illinois.edu</a></p>
+          <p style="margin:4px 0;"><strong>Phone:</strong> +1 (447) 902-7279</p>
+          <p style="margin:4px 0;"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/minze-luo-b7b743325" target="_blank">linkedin.com/in/minze-luo-b7b743325</a></p>
+        </div>
+        <a class="button" href="mailto:minzel2@illinois.edu">Email Me</a>
+      </div>
+    </div>
   </section>
 
   <footer>
-    © 2026 Sean Luo
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/minze-luo-b7b743325" target="_blank">LinkedIn</a>
+      <a href="mailto:minzel2@illinois.edu">Email</a>
+    </div>
+    © 2026 Sean Luo · Champaign, IL
   </footer>
 </body>
 </html>
